@@ -29,14 +29,15 @@ under the License.
   </head>
   <body>
     <!-- Start of first page: #one -->
-    <div data-role="page" id="setting">
+    <div data-role="page" id="start">
 
       <div data-role="header">
-        <h1>Multi-page</h1>
-        <a href="#control" data-transition="flip" data-icon="check" class="ui-btn-right">Save</a>
+        <h1>Mode</h1>
       </div><!-- /header -->
 
       <div role="main" class="ui-content" >
+        <a href="#single" data-transition="flip" data-role="button" class="mode-selector">Single mode</a>
+        <a href="#remote" data-transition="flip" data-role="button" class="mode-selector">Remote Control Mode</a>
       </div><!-- /content -->
 
       <div data-role="footer" data-theme="a" data-position="fixed">
@@ -44,11 +45,26 @@ under the License.
     </div><!-- /page one -->
 
     <!-- Start of second page: #two -->
-    <div data-role="page" id="control" data-theme="a">
+    <div data-role="page" id="single" data-theme="a">
 
       <div data-role="header">
-        <a href="#setting" data-transition="flip" data-icon="arrow-l">Setting</a>
-        <h1>Two</h1>
+        <a href="#start" data-transition="flip" data-icon="arrow-l">Back</a>
+        <h1>Control</h1>
+      </div><!-- /header -->
+
+      <div role="main" class="ui-content">
+    
+      </div><!-- /content -->
+
+      <div data-role="footer" data-position="fixed">
+      </div><!-- /footer -->
+    </div><!-- /page two -->
+
+    <div data-role="page" id="remote" data-theme="a">
+
+      <div data-role="header">
+        <a href="#start" data-transition="flip" data-icon="arrow-l">Back</a>
+        <h1>Control</h1>
       </div><!-- /header -->
 
       <div role="main" class="ui-content">
