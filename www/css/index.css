@@ -19,3 +19,21 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
+
+.pins {
+    display: inline;
+    width: 48%;
+}
+
+.pins div {
+    width: 95%;
+    float: right;
+}
+
+#left-pins {
+    margin-right: 1.5%;
+}
+
+#right-pins {
+    margin-left: 1.5%;
+}

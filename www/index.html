@@ -36,8 +36,130 @@ under the License.
       </div><!-- /header -->
 
       <div role="main" class="ui-content" >
-        <a href="#single" data-transition="flip" data-role="button" class="mode-selector">Single mode</a>
-        <a href="#remote" data-transition="flip" data-role="button" class="mode-selector">Remote Control Mode</a>
+        <a href="#setting" data-transition="flip" data-role="button" class="mode-selector">Single mode</a>
+        <a href="#setting" data-transition="flip" data-role="button" class="mode-selector">Remote Control Mode</a>
+      </div><!-- /content -->
+
+      <div data-role="footer" data-theme="a" data-position="fixed">
+      </div><!-- /footer -->
+    </div><!-- /page one -->
+
+    <div data-role="page" id="setting">
+
+      <div data-role="header">
+        <h1>Setting</h1>
+      </div><!-- /header -->
+
+      <div role="main" class="ui-content" >
+        <a id="config-bluetooth" href="#bluetooth" data-role="button">Connect Device</a>
+        <fieldset id="left-pins" class="pins">
+
+          <select name="ea" id="ea" class="pin" data-label="Left speed pin" data-mini="true" data-inline="true">
+            <option>Left speed pin:</option>
+            <option value="1">Left speed pin: 1</option>
+            <option value="2">Left speed pin: 2</option>
+            <option value="3">Left speed pin: 3</option>
+            <option value="4">Left speed pin: 4</option>
+            <option value="5">Left speed pin: 5</option>
+            <option value="6">Left speed pin: 6</option>
+            <option value="7">Left speed pin: 7</option>
+            <option value="8">Left speed pin: 8</option>
+            <option value="9">Left speed pin: 9</option>
+            <option value="10">Left speed pin: 10</option>
+            <option value="11">Left speed pin: 11</option>
+            <option value="12">Left speed pin: 12</option>
+            <option value="13">Left speed pin: 13</option>
+          </select>
+
+          <select name="i1" id="i1" class="pin" data-label="Left front pin" data-mini="true" data-inline="true">
+            <option>Left front pin:</option>
+            <option value="1">Left front pin: 1</option>
+            <option value="2">Left front pin: 2</option>
+            <option value="3">Left front pin: 3</option>
+            <option value="4">Left front pin: 4</option>
+            <option value="5">Left front pin: 5</option>
+            <option value="6">Left front pin: 6</option>
+            <option value="7">Left front pin: 7</option>
+            <option value="8">Left front pin: 8</option>
+            <option value="9">Left front pin: 9</option>
+            <option value="10">Left front pin: 10</option>
+            <option value="11">Left front pin: 11</option>
+            <option value="12">Left front pin: 12</option>
+            <option value="13">Left front pin: 13</option>
+          </select>
+
+          <select name="i2" id="i2" class="pin" data-label="Left back pin" data-mini="true" data-inline="true">
+            <option>Left back pin:</option>
+            <option value="1">Left back pin: 1</option>
+            <option value="2">Left back pin: 2</option>
+            <option value="3">Left back pin: 3</option>
+            <option value="4">Left back pin: 4</option>
+            <option value="5">Left back pin: 5</option>
+            <option value="6">Left back pin: 6</option>
+            <option value="7">Left back pin: 7</option>
+            <option value="8">Left back pin: 8</option>
+            <option value="9">Left back pin: 9</option>
+            <option value="10">Left back pin: 10</option>
+            <option value="11">Left back pin: 11</option>
+            <option value="12">Left back pin: 12</option>
+            <option value="13">Left back pin: 13</option>
+          </select>
+        </fieldset>
+
+        <fieldset id="right-pins" class="pins">
+          <select name="eb" id="eb" class="pin" data-label="Right speed pin" data-mini="true" data-inline="true">
+            <option>Right Speed Pin:</option>
+            <option value="1">Right Speed Pin: 1</option>
+            <option value="2">Right Speed Pin: 2</option>
+            <option value="3">Right Speed Pin: 3</option>
+            <option value="4">Right Speed Pin: 4</option>
+            <option value="5">Right Speed Pin: 5</option>
+            <option value="6">Right Speed Pin: 6</option>
+            <option value="7">Right Speed Pin: 7</option>
+            <option value="8">Right Speed Pin: 8</option>
+            <option value="9">Right Speed Pin: 9</option>
+            <option value="10">Right Speed Pin: 10</option>
+            <option value="11">Right Speed Pin: 11</option>
+            <option value="12">Right Speed Pin: 12</option>
+            <option value="13">Right Speed Pin: 13</option>
+          </select>
+
+          <select name="i3" id="i3" class="pin" data-label="Right front pin" data-mini="true" data-inline="true">
+            <option>Right front pin:</option>
+            <option value="1">Right front pin: 1</option>
+            <option value="2">Right front pin: 2</option>
+            <option value="3">Right front pin: 3</option>
+            <option value="4">Right front pin: 4</option>
+            <option value="5">Right front pin: 5</option>
+            <option value="6">Right front pin: 6</option>
+            <option value="7">Right front pin: 7</option>
+            <option value="8">Right front pin: 8</option>
+            <option value="9">Right front pin: 9</option>
+            <option value="10">Right front pin: 10</option>
+            <option value="11">Right front pin: 11</option>
+            <option value="12">Right front pin: 12</option>
+            <option value="13">Right front pin: 13</option>
+          </select>
+
+          <select name="i4" id="i4" class="pin" data-label="Right back pin" data-mini="true" data-inline="true">
+            <option>Right back pin:</option>
+            <option value="1">Right back pin: 1</option>
+            <option value="2">Right back pin: 2</option>
+            <option value="3">Right back pin: 3</option>
+            <option value="4">Right back pin: 4</option>
+            <option value="5">Right back pin: 5</option>
+            <option value="6">Right back pin: 6</option>
+            <option value="7">Right back pin: 7</option>
+            <option value="8">Right back pin: 8</option>
+            <option value="9">Right back pin: 9</option>
+            <option value="10">Right back pin: 10</option>
+            <option value="11">Right back pin: 11</option>
+            <option value="12">Right back pin: 12</option>
+            <option value="13">Right back pin: 13</option>
+          </select>
+        </fieldset>
+
+        <a href="#single" data-transition="flip" data-role="button">Start</a>
       </div><!-- /content -->
 
       <div data-role="footer" data-theme="a" data-position="fixed">
@@ -45,6 +167,33 @@ under the License.
     </div><!-- /page one -->
 
     <!-- Start of second page: #two -->
+    <div data-role="page" id="bluetooth" data-theme="a">
+
+      <div data-role="header">
+        <a href="#setting" data-transition="flip" data-icon="arrow-l">Back</a>
+        <h1>Connect Device</h1>
+      </div><!-- /header -->
+      <fieldset data-role="controlgroup">
+        <legend>Available Devices:</legend>
+        <input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked">
+        <label for="radio-choice-1">Cat</label>
+        <input type="radio" name="radio-choice-1" id="radio-choice-2" value="choice-2">
+        <label for="radio-choice-2">Dog</label>
+        <input type="radio" name="radio-choice-1" id="radio-choice-3" value="choice-3">
+        <label for="radio-choice-3">Hamster</label>
+        <input type="radio" name="radio-choice-1" id="radio-choice-4" value="choice-4">
+        <label for="radio-choice-4">Lizard</label>
+      </fieldset>
+      <a href="#setting" data-transition="flip" data-role="button">Connect</a>
+      <div role="main" class="ui-content">
+
+      </div><!-- /content -->
+
+      <div data-role="footer" data-position="fixed">
+      </div><!-- /footer -->
+    </div><!-- /page two -->
+
+    <!-- control page -->
     <div data-role="page" id="single" data-theme="a">
 
       <div data-role="header">
@@ -53,7 +202,7 @@ under the License.
       </div><!-- /header -->
 
       <div role="main" class="ui-content">
-    
+
       </div><!-- /content -->
 
       <div data-role="footer" data-position="fixed">
@@ -68,13 +217,14 @@ under the License.
       </div><!-- /header -->
 
       <div role="main" class="ui-content">
-    
+
       </div><!-- /content -->
 
       <div data-role="footer" data-position="fixed">
       </div><!-- /footer -->
     </div><!-- /page two -->
-    <!--<script type="text/javascript" src="cordova.js"></script> -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/libs/underscore-min.js"></script>
     <script type="text/javascript" src="js/libs/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/libs/jquery.mobile/jquery.mobile-1.4.0.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
