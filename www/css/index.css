@@ -37,3 +37,18 @@
 #right-pins {
     margin-left: 1.5%;
 }
+
+.error{
+    width:80%;
+    height:50px;
+    border:2px solid #eee;
+    background:black;
+    color:white;
+    font-family:Calibri;
+    line-height:50px;
+    text-align:center;
+    font-size:15px;
+    position:fixed;
+    left:10%;
+    bottom: 5px;
+}

@@ -23,15 +23,82 @@ var app = {
     },
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function () {
-        $('#bluetooth').bind('pageshow', function (event) {
-            alert('This page was just enhanced by jQuery Mobile!');
-        });
+        $(document).bind('deviceready', this.deviceReady);
     },
+    deviceReady: function () {
+        $('#bluetooth').bind('pagebeforeshow', function (event) {
+            bluetoothSerial.list(app.ondevicelist, function () {
+                app.showStatus("error");
+            });
+        });
+
+        $("#connectDevice").ontouchstart = app.connect;
+        $("#connectDevice").click = app.connect;
+    },
+
+    connect: function () {
+        app.showStatus("connect");
+        console.log("connect");
+        var device = $('#deviceList input[data-cacheval="true"]').val();
+        console.log("Requesting connection to " + device);
+        bluetoothSerial.connect(device, app.onConnect, app.onDisconnect);
+    },
+    disconnect: function (event) {
+        if (event) {
+            event.preventDefault();
+        }
+        bluetoothSerial.disconnect(app.ondisconnect);
+    },
+    onConnect: function () {
+        app.showStatus("connected");
+        $("#connectDevice").text("Connected");
+    },
+    onDisconnect: function () {
+        app.showStatus("failed");
+    },
+
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // deviceready Event Handler
     //
+    ondevicelist: function (devices) {
+        var option;
+
+//        app.showStatus("Device num: " + devices);
+        // remove existing devices
+        $("#deviceList").html("");
+
+        devices.forEach(function (device) {
+            option = $('<input>',{name:'device', type:'radio', id:device.name})
+            if (device.hasOwnProperty("uuid")) {
+                option.val(device.uuid)
+            } else if (device.hasOwnProperty("address")) {
+                option.val(device.address);
+            } else {
+                option.val("ERROR " + JSON.stringify(device));
+            }
+            option.html(device.name);
+            app.showStatus("device name: " + device.name);
+            $("#deviceList").append(option).append($('<label>',{for:device.name ,text:device.name}));
+            $("#deviceList").append(option);
+        });
+
+        if (devices.length === 0) {
+            option = document.createElement('option');
+            option.innerHTML = "No Bluetooth Devices";
+            $("#deviceList").appendChild(option);
+        }
+
+        $("#deviceList").trigger('create');
+        app.showStatus("list all devices");
+
+    },
+
+    showStatus: function (message) {
+        $('.error').html(message);
+        $('.error').fadeIn(400).delay(1000).fadeOut(400); //fade out after 3 seconds
+    },
     onMenuBtnClick: function () {
 
     }
