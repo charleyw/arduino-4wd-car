@@ -1,28 +1,28 @@
-define(['jquery', "flashMessage"],function($, flash){
-    bluetoothSerial = {
-        list: function(onDevicesList, onError){
-            onDevicesList([
-                {uuid: '1234', name: 'charleyw'},
-                {address: 'testdevice', name: 'hc-h6'}
-            ]);
-        },
-        connect: function (device, onConnect, onDisconnect) {
-        }
-    }
-
+bluetooth = (function(){
     function bindEvents() {
-        $("#connectBtn").click(function () {
+        $("#connectBtn").on("vclick", function () {
+            flash.info("start connect in connect");
             connect();
         });
     }
 
     function initialize(){
         flash.info("start connect");
-        bluetoothSerial.list(onDeviceList, function () {
-            flash.error("find device error");
-        });
+        bluetoothSerial.list(onDeviceList, generateFailureFunction("List fail"));
         bindEvents();
     }
+
+    function generateFailureFunction(message) {
+        var func = function(reason) {
+            var details = "";
+            if (reason) {
+                details += ": " + JSON.stringify(reason);
+            }
+            flash.error(message + details);
+        };
+        return func;
+    }
+
 
     function connect() {
         flash.info("start connect");
@@ -90,4 +90,4 @@ define(['jquery', "flashMessage"],function($, flash){
         disconnect: disconnect
     }
 
-});
+})();

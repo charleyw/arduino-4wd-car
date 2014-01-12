@@ -1,4 +1,4 @@
-define(['jquery'], function ($, jasmine, bt, _) {
+flash = (function() {
     var flashMessage = '#flash-message';
 
     function show() {
@@ -25,4 +25,4 @@ define(['jquery'], function ($, jasmine, bt, _) {
         info: info,
         error: error
     }
-});
+})();

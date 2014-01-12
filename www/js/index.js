@@ -16,24 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-define(['jquery','jquerymobile', 'bluetooth', 'flashMessage'], function($, jquerymobile, bt, flash){
-    var app = {
-        // Application Constructor
-        initialize: function () {
-            this.bindEvents();
-        },
-        // 'load', 'deviceready', 'offline', and 'online'.
-        bindEvents: function () {
-            flash.info("start bindEvents");
-            $(document).bind('deviceready', this.deviceReady);
-        },
-        deviceReady: function () {
-            flash.info("device ready");
-            $('#bluetooth').bind('pagebeforeshow', bt.initialize);
-        },
-        onMenuBtnClick: function () {
+var app = {
+    // Application Constructor
+    initialize: function () {
+        this.bindEvents();
+    },
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function () {
+        flash.info("start bindEvents");
+        $(document).bind('deviceready', this.deviceReady);
+    },
+    deviceReady: function () {
+        flash.info("device ready");
+        $('#bluetooth').bind('pagebeforeshow', bluetooth.initialize);
+    },
+    onMenuBtnClick: function () {
 
-        }
-    };
-    return app;
-});
+    }
+};

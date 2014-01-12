@@ -9,24 +9,22 @@ module.exports = function (config) {
 
 
         // frameworks to use
-        frameworks: ['jasmine', 'requirejs'],
+        frameworks: ['jasmine'],
 
 
         // list of files / patterns to load in the browser
         files: [
-//        'js/libs/jquery-1.9.1.min.js','js/libs/jquery.mobile/jquery.mobile-1.4.0.min.js', 'js/*.js', 'test/**/*spec.js', 'test/helper/*.*',
-            { pattern: 'js/libs/**/*.js', included: false },
-            { pattern: 'js/*.js', included: false },
-            { pattern: 'test/**/*[Ss]pec.js', included: false },
-            'test/helper/*.js',
-            'test/test-main.js'
+            'js/libs/jquery-1.9.1.min.js',
+            'js/libs/jquery.mobile/jquery.mobile-1.4.0.min.js',
+            'js/*.js',
+            'test/**/*[Ss]pec.js',
+            'test/helper/*.*'
         ],
 
 
         // list of files to exclude
         exclude: [
-            '**/*.swp',
-            'js/main.js'
+            '**/*.swp'
         ],
 
 
