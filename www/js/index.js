@@ -28,7 +28,7 @@ define(['jquery','jquerymobile'], function($, jquerymobile){
         },
         deviceReady: function () {
             $('#bluetooth').bind('pagebeforeshow', function (event) {
-                bluetoothSerial.list(app.ondevicelist, function () {
+                bluetoothSerial.list(app.onDeviceList, function () {
                     app.showStatus("error");
                 });
             });

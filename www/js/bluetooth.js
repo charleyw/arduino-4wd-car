@@ -1,17 +1,24 @@
 define(['jquery'],function($){
+    function initialize(){
+        $("#connectBtn").click(function(){
+            connect();
+        });
+    }
+
     function connect() {
 //        app.showStatus("connect");
-        console.log("connect");
         var device = $('#deviceList input[data-cacheval="true"]').val();
         console.log("Requesting connection to " + device);
         bluetoothSerial.connect(device, onConnect, onDisconnect);
     }
+
     function disconnect(event) {
         if (event) {
             event.preventDefault();
         }
         bluetoothSerial.disconnect(onDisconnect);
     }
+
     function onConnect() {
         $("#connectDevice").text("Connected");
     }
@@ -25,7 +32,7 @@ define(['jquery'],function($){
     // Bind any events that are required on startup. Common events are:
     // deviceready Event Handler
     //
-    function ondevicelist(devices) {
+    function onDeviceList(devices) {
         var option;
 
 //        app.showStatus("Device num: " + devices);
@@ -59,7 +66,8 @@ define(['jquery'],function($){
     }
 
     return {
-        ondevicelist: ondevicelist,
+        initialize: initialize,
+        onDeviceList: onDeviceList,
         connect: connect,
         disconnect: disconnect
     }
