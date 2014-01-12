@@ -15,7 +15,7 @@ require.config({
 require([ "jquery", "jquerymobile", "index" ], function( $, Mobile, app ) {
 
     // Prevents all anchor click handling
-    $.mobile.linkBindingEnabled = false;
+    $.mobile.linkBindingEnabled = true;
 
     // Disabling this will prevent jQuery Mobile from handling hash changes
     $.mobile.hashListeningEnabled = false;

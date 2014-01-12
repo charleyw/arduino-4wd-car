@@ -1,8 +1,27 @@
-define(['jquery', "js/flashMessage"],function($, flash){
-    function initialize(){
-        $("#connectBtn").click(function(){
+define(['jquery', "flashMessage"],function($, flash){
+    bluetoothSerial = {
+        list: function(onDevicesList, onError){
+            onDevicesList([
+                {uuid: '1234', name: 'charleyw'},
+                {address: 'testdevice', name: 'hc-h6'}
+            ]);
+        },
+        connect: function (device, onConnect, onDisconnect) {
+        }
+    }
+
+    function bindEvents() {
+        $("#connectBtn").click(function () {
             connect();
         });
+    }
+
+    function initialize(){
+        flash.info("start connect");
+        bluetoothSerial.list(onDeviceList, function () {
+            flash.error("find device error");
+        });
+        bindEvents();
     }
 
     function connect() {
@@ -34,12 +53,13 @@ define(['jquery', "js/flashMessage"],function($, flash){
     //
     function onDeviceList(devices) {
         var option;
-
+        flash.info("starting find device...")
         // remove existing devices
         $("#deviceList").html("");
 
         devices.forEach(function (device) {
             option = $('<input>',{name:'device', type:'radio', id:device.name})
+            flash.info("Found device: "+device.name);
             if (device.hasOwnProperty("uuid")) {
                 option.val(device.uuid)
             } else if (device.hasOwnProperty("address")) {
@@ -53,6 +73,7 @@ define(['jquery', "js/flashMessage"],function($, flash){
         });
 
         if (devices.length === 0) {
+            flash.info("No Bluetooth Devices");
             option = document.createElement('option');
             option.innerHTML = "No Bluetooth Devices";
             $("#deviceList").appendChild(option);
