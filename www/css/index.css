@@ -38,11 +38,12 @@
     margin-left: 1.5%;
 }
 
-.error{
+#flash-message{
     width:80%;
     height:50px;
     border:2px solid #eee;
-    background:black;
+    background:#5cb85c;
+    border-color: #4cae4c;
     color:white;
     font-family:Calibri;
     line-height:50px;
@@ -51,4 +52,9 @@
     position:fixed;
     left:10%;
     bottom: 5px;
+}
+
+#flash-message.error{
+    background: #d2322d;
+    border-color: #ac2925;
 }

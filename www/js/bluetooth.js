@@ -1,4 +1,4 @@
-define(['jquery'],function($){
+define(['jquery', "js/flashMessage"],function($, flash){
     function initialize(){
         $("#connectBtn").click(function(){
             connect();
@@ -6,7 +6,7 @@ define(['jquery'],function($){
     }
 
     function connect() {
-//        app.showStatus("connect");
+        flash.info("start connect");
         var device = $('#deviceList input[data-cacheval="true"]').val();
         console.log("Requesting connection to " + device);
         bluetoothSerial.connect(device, onConnect, onDisconnect);
@@ -24,7 +24,7 @@ define(['jquery'],function($){
     }
 
     function onDisconnect() {
-//        app.showStatus("failed");
+        flash.info("bt connect failed");
     }
 
     // Bind Event Listeners
@@ -35,7 +35,6 @@ define(['jquery'],function($){
     function onDeviceList(devices) {
         var option;
 
-//        app.showStatus("Device num: " + devices);
         // remove existing devices
         $("#deviceList").html("");
 
@@ -49,7 +48,6 @@ define(['jquery'],function($){
                 option.val("ERROR " + JSON.stringify(device));
             }
             option.html(device.name);
-//            app.showStatus("device name: " + device.name);
             $("#deviceList").append(option).append($('<label>',{for:device.name ,text:device.name}));
             $("#deviceList").append(option);
         });
@@ -61,7 +59,6 @@ define(['jquery'],function($){
         }
 
         $("#deviceList").trigger('create');
-//        app.showStatus("list all devices");
 
     }
 
