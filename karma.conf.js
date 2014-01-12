@@ -17,7 +17,7 @@ module.exports = function (config) {
 //        'js/libs/jquery-1.9.1.min.js','js/libs/jquery.mobile/jquery.mobile-1.4.0.min.js', 'js/*.js', 'test/**/*spec.js', 'test/helper/*.*',
             { pattern: 'js/libs/**/*.js', included: false },
             { pattern: 'js/*.js', included: false },
-            { pattern: 'test/**/*spec.js', included: false },
+            { pattern: 'test/**/*[Ss]pec.js', included: false },
             'test/helper/*.js',
             'test/test-main.js'
         ],
