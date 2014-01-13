@@ -24,11 +24,12 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function () {
         flash.info("start bindEvents");
-        $(document).bind('deviceready', this.deviceReady);
+        $(document).ready(this.deviceReady);
     },
     deviceReady: function () {
         flash.info("device ready");
         $('#bluetooth').bind('pagebeforeshow', bluetooth.initialize);
+        $('#single').bind('pagebeforeshow', robot.initialize);
     },
     onMenuBtnClick: function () {
 

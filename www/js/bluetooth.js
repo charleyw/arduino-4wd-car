@@ -26,6 +26,9 @@ bluetooth = (function(){
         return func;
     }
 
+    function send(message){
+        bluetoothSerial.write(message);
+    }
 
     function connect() {
         flash.info("start connect");
@@ -33,6 +36,10 @@ bluetooth = (function(){
         console.log("Requesting connection to " + device);
         flash.info("Connect to: "+device);
         bluetoothSerial.connect(device, onConnect, onDisconnect);
+    }
+
+    function changePage(){
+        $.mobile.changePage( $("#single").page());
     }
 
     function disconnect(event) {
@@ -44,8 +51,8 @@ bluetooth = (function(){
 
     function onConnect() {
         flash.info("Connected");
-
         $("#connectDevice").text("Connected");
+        changePage();
     }
 
     function onDisconnect(reason) {
@@ -90,6 +97,7 @@ bluetooth = (function(){
     }
 
     return {
+        send: send,
         initialize: initialize,
         onDeviceList: onDeviceList,
         connect: connect,
