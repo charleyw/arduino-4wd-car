@@ -1,8 +1,11 @@
 bluetooth = (function(){
     function bindEvents() {
         $("#connectDevice").on("click", function () {
-            flash.info("start connect in connect");
             connect();
+        });
+        $("#disconnectDevice").on("click", function () {
+            flash.info("disconnect device");
+            disconnect();
         });
     }
 
@@ -46,7 +49,7 @@ bluetooth = (function(){
     }
 
     function onDisconnect(reason) {
-        flash.info("Connect failed: " + reason);
+        flash.info("Disconnected: " + reason);
     }
 
     // Bind Event Listeners
