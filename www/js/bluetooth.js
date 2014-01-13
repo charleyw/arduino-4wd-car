@@ -26,9 +26,9 @@ bluetooth = (function(){
 
     function connect() {
         flash.info("start connect");
-        var device = $('#deviceList input[data-cacheval="true"]').val();
+        var device = $('#deviceList option:selected').val();
         console.log("Requesting connection to " + device);
-        flash.info(device +":"+ $('#deviceList input[data-cacheval="true"]').attr("id"));
+        flash.info("Connect to: "+device);
         bluetoothSerial.connect(device, onConnect, onDisconnect);
     }
 
@@ -61,7 +61,7 @@ bluetooth = (function(){
         $("#deviceList").html("");
 
         devices.forEach(function (device) {
-            option = $('<input>',{name:'device', type:'radio', id:device.name})
+            option = $('<option>',{text:device.name});
             flash.info(device.name + " addr: " + device.address);
             if (device.hasOwnProperty("uuid")) {
                 option.val(device.uuid)
@@ -70,10 +70,11 @@ bluetooth = (function(){
             } else {
                 option.val("ERROR " + JSON.stringify(device));
             }
-            option.html(device.name);
-            $("#deviceList").append(option).append($('<label>',{for:device.name ,text:device.name+"123" }));
+//            option.html(device.name);
             $("#deviceList").append(option);
         });
+
+        $('#deviceList option:first-of-type').attr("selected", "selected");
 
         if (devices.length === 0) {
             flash.info("No Bluetooth Devices");
@@ -82,8 +83,7 @@ bluetooth = (function(){
             $("#deviceList").appendChild(option);
         }
 
-        $("#deviceList").trigger('create');
-
+        $('#deviceList').selectmenu("refresh");
     }
 
     return {
