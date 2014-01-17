@@ -17,7 +17,7 @@ robot = (function () {
             limitStickTravel: true,
             stickRadius: 150
         });
-        setInterval(timeIntervalCallback, 1 / 30 * 1000);
+        setInterval(timeIntervalCallback, 500);
 
         bindEvents();
     }
@@ -37,55 +37,19 @@ robot = (function () {
     }
 
     function timeIntervalCallback(){
-        var outputEl = document.getElementById('result');
-        outputEl.innerHTML = '<b>Left:</b> '
-            + (leftJoystick.up() ? ' up' : '')
-            + (leftJoystick.down() ? ' down' : '')
-            + ' (' + leftJoystick.deltaY() + ') '
-            + ' <b>Right:</b> '
-            + (rightJoystick.up() ? ' up' : '')
-            + (rightJoystick.down() ? ' down' : '')
-            + ' (' + rightJoystick.deltaY() + ') ';
-    }
+        var outputEl = document.getElementById('result'),
+            leftSpeed,
+            rightSpeed;
+        leftSpeed = leftJoystick.deltaY() > 145 || leftJoystick.deltaY() < -145 ? 255 : Math.round((-leftJoystick.deltaY())/150 * 255);
+        rightSpeed = rightJoystick.deltaY() > 145 || rightJoystick.deltaY() < -145 ? 255 : Math.round((-rightJoystick.deltaY())/150 * 255);
+        outputEl.innerHTML = '<b>Left Speed: </b>'
+            + leftSpeed
+            + ' <b>right Speed: </b>'
+            + rightSpeed;
 
-    function leftForward() {
-        bluetooth.send("lf");
-    }
-
-    function leftBackward() {
-        bluetooth.send("lb");
-
-    }
-
-    function rightForward() {
-        bluetooth.send("rf");
-    }
-
-    function rightBackward() {
-        bluetooth.send("rb");
-    }
-
-    function forward() {
-        bluetooth.send("w");
-    }
-
-    function backward() {
-        bluetooth.send("s");
-    }
-
-    function turnLeft() {
-        bluetooth.send("a");
-    }
-
-    function turnRight() {
-        bluetooth.send("d");
     }
 
     return {
-        forward: forward,
-        backward: backward,
-        turnLeft: turnLeft,
-        turnRight: turnRight,
         initialize: initialize
     }
 })();
