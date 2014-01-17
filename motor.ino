@@ -1,8 +1,6 @@
-const int buffSize = 10;
-char serialData[buffSize];
-int readCount;
-char command[buffSize];
-char extraData[buffSize];
+#include <TimerOne.h>
+
+int timeDone = -1;
 
 int ea = 6; 
 int i1 = 12;
@@ -22,44 +20,65 @@ void setup() {
   pinMode(i4, OUTPUT);
 
   // put your setup code here, to run once:
+
+  Timer1.initialize(500000);
+  Timer1.attachInterrupt(timeIsr);
   Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  parseCommand();
-  if ( strcmp (command,"w") == 0)              // if 'H' was received
-  {
-    forward();
-  } else if( strcmp (command,"s") == 0) {
-    backward();
-  } else if( strcmp (command,"a") == 0) {
-    left();
-  } else if( strcmp (command,"d") == 0) {
-    right();
-  } else if( strcmp (command,"z") == 0) {
-    analogWrite(ea, atoi(extraData));
+  if(timeDone == 1){
+    timeDone = 2;
+    processCommand();
+    timeDone = -1;
   }
-  memset(command, 0, sizeof(command));
-  memset(extraData, 0, sizeof(extraData));
-  delay(100);                    // wait 100ms for next reading
 }
 
-void parseCommand(){
-  if(Serial.available()){
-    readCount = -1;
-    readCount = Serial.readBytesUntil('\n', serialData, buffSize);
-    if(readCount > 0){
-      strcpy(command,strtok(serialData,":"));
-      strcpy(extraData,strtok(NULL,":"));
-    }
-//    Serial.print("Command: ");
-//    Serial.println(command);
-//    Serial.print("Extra Data: ");
-//    Serial.println(extraData);
-    memset(serialData, 0, sizeof(serialData));
-    Serial.flush();
+void timeIsr() {
+  if(timeDone == -1){
+    timeDone = 1;  
   }
+}
+
+void processCommand(){
+  int leftSpeed  = 0;
+  int rightSpeed = 0;
+  if(Serial.available()){
+    leftSpeed = Serial.parseInt();
+    char delimiter = Serial.read();
+    rightSpeed = Serial.parseInt();
+    char terminator = Serial.read();
+  }
+
+  Serial.print("left: ");
+  Serial.println(leftSpeed);
+  Serial.print("right: ");
+  Serial.println(rightSpeed);
+  long time = millis();
+  setSpeed(leftSpeed, rightSpeed);
+  long time1 = millis();
+  Serial.println(time1 - time);
+
+}
+
+void setSpeed(int left, int right){
+  analogWrite(ea, abs(left));
+  analogWrite(eb, abs(right));
+  if(left > 0 ){
+    leftForward();
+  }else if (left < 0){
+    leftBackward();
+  }else{
+    leftStop();
+  }
+  if(right > 0 ){
+    rightForward();
+  }else if (right < 0){
+    rightBackward();
+  }else{
+    rightStop();
+  }
+
 }
 
 void forward() {
@@ -102,9 +121,12 @@ void rightBackward() {
   digitalWrite(i3, LOW);
 }
 
-void stopEngine() {
+void leftStop(){
   digitalWrite(i1, LOW);
   digitalWrite(i2, LOW);
+}
+
+void rightStop(){
   digitalWrite(i3, LOW);
   digitalWrite(i4, LOW);
 }
