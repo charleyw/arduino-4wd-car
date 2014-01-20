@@ -46,6 +46,7 @@ robot = (function () {
             + leftSpeed
             + ' <b>right Speed: </b>'
             + rightSpeed;
+        bluetooth.send(leftSpeed+","+rightSpeed+"a");
 
     }
 
