@@ -41,6 +41,9 @@ This repo include an android app(using cordova), and an arduino control program.
 * After connected, touch the screen, you will know how to play.
 
 
+
+<hr>
+
 © 2014 Wang Chao. This code is distributed under the MIT license.
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/charleyw/arduino-cordova/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
