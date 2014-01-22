@@ -49,16 +49,7 @@ void processCommand(){
     rightSpeed = Serial.parseInt();
     char terminator = Serial.read();
   }
-
-  Serial.print("left: ");
-  Serial.println(leftSpeed);
-  Serial.print("right: ");
-  Serial.println(rightSpeed);
-  long time = millis();
   setSpeed(leftSpeed, rightSpeed);
-  long time1 = millis();
-  Serial.println(time1 - time);
-
 }
 
 void setSpeed(int left, int right){
