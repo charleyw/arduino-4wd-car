@@ -36,18 +36,23 @@ robot = (function () {
         });
     }
 
+    function sign(number) {
+        return number ? number < 0 ? 1 : -1 : 0;
+    }
+
     function timeIntervalCallback(){
         var outputEl = document.getElementById('result'),
+            leftDelta = leftJoystick.deltaY(),
+            rightDelta = rightJoystick.deltaY(),
             leftSpeed,
             rightSpeed;
-        leftSpeed = leftJoystick.deltaY() > 145 || leftJoystick.deltaY() < -145 ? 255 : Math.round((-leftJoystick.deltaY())/150 * 255);
-        rightSpeed = rightJoystick.deltaY() > 145 || rightJoystick.deltaY() < -145 ? 255 : Math.round((-rightJoystick.deltaY())/150 * 255);
+        leftSpeed = leftDelta > 145 || leftDelta < -145 ? sign(leftDelta) * 255 : Math.round((-leftDelta)/150 * 255);
+        rightSpeed = rightDelta > 145 || rightDelta < -145 ? sign(rightDelta) * 255 : Math.round((-rightDelta)/150 * 255);
         outputEl.innerHTML = '<b>Left Speed: </b>'
             + leftSpeed
             + ' <b>right Speed: </b>'
             + rightSpeed;
         bluetooth.send(leftSpeed+","+rightSpeed+"a");
-
     }
 
     return {
